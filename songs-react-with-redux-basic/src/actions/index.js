@@ -1,7 +1,7 @@
 /*
 knote: step2 : define all actions under this directory. 
         -This will let developer know what actions are possible on data in this app under redux
-        -Actions are way for us to feed new data into redux-store
+        -Actions are way for us to feed "new" data into redux-store
 */
 // Action creator
 export const selectSong = song => {

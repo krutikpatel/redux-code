@@ -3,12 +3,23 @@ import { connect } from 'react-redux';
 import { fetchPostsAndUsers } from '../actions';
 import UserHeader from './UserHeader';
 
+/*
+knote: sequence of events
+  -component renders (with empty props from reducer)
+  -then componentDidMount() gets called.
+  -that calls action to get/fetch data from API
+  -that calls reducer to update state
+  -that invokes mapStateToProps again by redux
+  -that invokes render() again because state/props changed
+*/
 class PostList extends React.Component {
   componentDidMount() {
     this.props.fetchPostsAndUsers();
+    //console.log('component did mount');
   }
 
   renderList() {
+    //console.log(this.props);
     return this.props.posts.map(post => {
       return (
         <div className="item" key={post.id}>
@@ -30,7 +41,12 @@ class PostList extends React.Component {
   }
 }
 
+/*
+knote: IMP : state.posts is usersReducer, named in index.js of Reducers
+  -infact, state is combinedReducers, so state is combination of all reducers ! :)
+*/
 const mapStateToProps = state => {
+  console.log(state);
   return { posts: state.posts };
 };
 
